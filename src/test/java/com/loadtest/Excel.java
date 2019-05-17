@@ -18,7 +18,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Excel {
+public class Excel extends Baseclass {
 
 	private static final Logger log = LogManager.getLogger(Excel.class.getName());
 
@@ -29,6 +29,7 @@ public class Excel {
 	public static FileInputStream f = null;
 	public static HashMap<String, String> currentHash = new HashMap<String, String>();
 	public static List<HashMap<String, String>> mydata = new ArrayList<HashMap<String, String>>();
+
 	public static String getExceldata(String excelFileName, String sheetname, int colnum, int rownum) {
 		try {
 
@@ -45,7 +46,7 @@ public class Excel {
 		}
 	}
 
-	public static boolean writeToExcelSheet(String avgLoadTime,Double url,int executionTimes)
+	public static boolean writeToExcelSheet(String avgLoadTime, Double url, int executionTimes)
 			throws FileNotFoundException, IOException {
 		String fileName = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData.xlsx";
 		String sheetName = "AvgLoadTimeData";
@@ -71,6 +72,7 @@ public class Excel {
 		return true;
 
 	}
+
 
 	public static List<HashMap<String, String>> readSpecificTestData( String testCaseId)
 			throws IOException {
@@ -102,7 +104,7 @@ public class Excel {
 
 				}
 				mydata.add(currentHash);
-				System.out.println("TestCaseUrl" + currentHash.get("TestCaseUrl"));
+				//System.out.println("Username" + currentHash.get("Username"));
 
 			}
 		}

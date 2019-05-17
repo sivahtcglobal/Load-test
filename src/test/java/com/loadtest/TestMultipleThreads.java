@@ -12,90 +12,99 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestMultipleThreads extends Baseclass {
+public class TestMultipleThreads extends Excel {
 	public static int i = 0;
 	public static Double avgLoadTime = 0.0;
 
 	@Test()
 	public static void loadTestofNewsPage() throws FileNotFoundException, IOException {
-		i = 0;
-		avgLoadTime = 0.0;
-		while (i < 50) {
+
+		String pageURL = null;
+		while (i < 3) {
+
+			try {
+				readSpecificTestData("TC001");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			initialization();
-//			try {
-//				//Excel.readSpecificTestData("TC001");
-//			} catch (IOException e) {
-//
-//				e.printStackTrace();
-//			}
 			dr.manage().window().maximize();
 			dr.manage().deleteAllCookies();
-
-			dr.navigate().to("https://www20.thegeneraltest.com/news/");
-
-			waitForPageLoaded();
-
-			dr.quit();
-			++i;
-
+			if (currentHash.get("TestCaseId").equals("TC004") || currentHash.get("TestCaseId").equals("TC005")) {
+				dr.navigate().to(currentHash.get("TestCaseUrl"));
+				WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
+				nonMonetizedZipCode.sendKeys(currentHash.get("ZipCode"));
+				WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
+				getQuoteButton.click();
+				pageURL = dr.getCurrentUrl();
+				waitForPageLoaded();
+				dr.quit();
+				++i;
+			} else {
+				dr.navigate().to(currentHash.get("TestCaseUrl"));
+				pageURL = dr.getCurrentUrl();
+				waitForPageLoaded();
+				dr.quit();
+				++i;
+			}
 		}
 		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
-		Excel.writeToExcelSheet("www20.thegeneraltest.com/news/", avgLoadTime / i, i);
+		writeToExcelSheet(pageURL, avgLoadTime / i, i);
 	}
-
-	@Test()
-	public static void loadTestofQuotePage() throws FileNotFoundException, IOException {
-		i = 0;
-		avgLoadTime = 0.0;
-		while (i < 50) {
-			initialization();
-//			try {
-//				//Excel.readSpecificTestData("TC001");
-//			} catch (IOException e) {
 //
+//	@Test()
+//	public static void loadTestofQuotePage() throws FileNotFoundException, IOException {
+//		i = 0;
+//		avgLoadTime = 0.0;
+//		while (i < 50) {
+//
+//			try {
+//				readSpecificTestData("TC001");
+//			} catch (IOException e) {
 //				e.printStackTrace();
 //			}
-			dr.manage().window().maximize();
-			dr.manage().deleteAllCookies();
-
-			dr.navigate().to("https://www20.thegeneraltest.com/quote/");
-
-			waitForPageLoaded();
-
-			dr.quit();
-			++i;
-
-		}
-		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
-		Excel.writeToExcelSheet("www20.thegeneraltest.com/quote/", avgLoadTime / i, i);
-	}
-
-	@Test()
-	public static void loadTestofHomePage() throws FileNotFoundException, IOException {
-		i = 0;
-		avgLoadTime = 0.0;
-		while (i < 50) {
-			initialization();
-//			try {
-//				//Excel.readSpecificTestData("TC001");
-//			} catch (IOException e) {
+//			initialization();
+//			dr.manage().window().maximize();
+//			dr.manage().deleteAllCookies();
 //
-//				e.printStackTrace();
-//			}
-			dr.manage().window().maximize();
-			dr.manage().deleteAllCookies();
-
-			dr.navigate().to("https://www20.thegeneraltest.com/");
-
-			waitForPageLoaded();
-
-			dr.quit();
-			++i;
-
-		}
-		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
-		Excel.writeToExcelSheet("www20.thegeneraltest.com/", avgLoadTime / i, i);
-	}
+//			dr.navigate().to("https://www20.thegeneraltest.com/quote/");
+//
+//			waitForPageLoaded();
+//
+//			dr.quit();
+//			++i;
+//
+//		}
+//		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
+//		Excel.writeToExcelSheet("www20.thegeneraltest.com/quote/", avgLoadTime / i, i);
+//	}
+//
+//	@Test()
+//	public static void loadTestofHomePage() throws FileNotFoundException, IOException {
+//		i = 0;
+//		avgLoadTime = 0.0;
+//		while (i < 50) {
+//			initialization();
+////			try {
+////				//Excel.readSpecificTestData("TC001");
+////			} catch (IOException e) {
+////
+////				e.printStackTrace();
+////			}
+//			dr.manage().window().maximize();
+//			dr.manage().deleteAllCookies();
+//
+//			dr.navigate().to("https://www20.thegeneraltest.com/");
+//
+//			waitForPageLoaded();
+//
+//			dr.quit();
+//			++i;
+//
+//		}
+//		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
+//		Excel.writeToExcelSheet("www20.thegeneraltest.com/", avgLoadTime / i, i);
+//	}
 
 	public static void waitForPageLoaded() {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
@@ -119,48 +128,48 @@ public class TestMultipleThreads extends Baseclass {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
 		}
 	}
-
-	@Test()
-	public static void loadTestWithValidZipCode() throws FileNotFoundException, IOException {
-		i = 0;
-		avgLoadTime = 0.0;
-		while (i < 50) {
-			initialization();
-			dr.manage().window().maximize();
-			dr.manage().deleteAllCookies();
-			dr.navigate().to("https://www20.thegeneraltest.com");
-			WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
-			nonMonetizedZipCode.sendKeys("33183");
-			WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
-			getQuoteButton.click();
-			waitForPageLoaded();
-
-			dr.quit();
-			++i;
-		}
-		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
-		Excel.writeToExcelSheet("www20.thegeneraltest.com with Valid non-monetized ZIP code", avgLoadTime / i, i);
-	}
-
-	@Test()
-	public static void loadTestWithInValidZipCode() throws FileNotFoundException, IOException {
-		i = 0;
-		avgLoadTime = 0.0;
-		while (i < 50) {
-			initialization();
-			dr.manage().window().maximize();
-			dr.manage().deleteAllCookies();
-			dr.navigate().to("https://www20.thegeneraltest.com");
-			WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
-			nonMonetizedZipCode.sendKeys("99999");
-			WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
-			getQuoteButton.click();
-			waitForPageLoaded();
-
-			dr.quit();
-			++i;
-		}
-		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
-		Excel.writeToExcelSheet("www20.thegeneraltest.com with InValid non-monetized ZIP code", avgLoadTime / i, i);
-	}
+//
+//	@Test()
+//	public static void loadTestWithValidZipCode() throws FileNotFoundException, IOException {
+//		i = 0;
+//		avgLoadTime = 0.0;
+//		while (i < 50) {
+//			initialization();
+//			dr.manage().window().maximize();
+//			dr.manage().deleteAllCookies();
+//			dr.navigate().to("https://www20.thegeneraltest.com");
+//			WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
+//			nonMonetizedZipCode.sendKeys("33183");
+//			WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
+//			getQuoteButton.click();
+//			waitForPageLoaded();
+//
+//			dr.quit();
+//			++i;
+//		}
+//		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
+//		Excel.writeToExcelSheet("www20.thegeneraltest.com with Valid non-monetized ZIP code", avgLoadTime / i, i);
+//	}
+//
+//	@Test()
+//	public static void loadTestWithInValidZipCode() throws FileNotFoundException, IOException {
+//		i = 0;
+//		avgLoadTime = 0.0;
+//		while (i < 50) {
+//			initialization();
+//			dr.manage().window().maximize();
+//			dr.manage().deleteAllCookies();
+//			dr.navigate().to("https://www20.thegeneraltest.com");
+//			WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
+//			nonMonetizedZipCode.sendKeys("99999");
+//			WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
+//			getQuoteButton.click();
+//			waitForPageLoaded();
+//
+//			dr.quit();
+//			++i;
+//		}
+//		System.out.println("Average load time for " + i + " times execution is: " + avgLoadTime / i);
+//		Excel.writeToExcelSheet("www20.thegeneraltest.com with InValid non-monetized ZIP code", avgLoadTime / i, i);
+//	}
 }
