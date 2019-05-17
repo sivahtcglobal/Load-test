@@ -1,5 +1,18 @@
 package com.loadtest;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +25,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 public class Baseclass {
-	
+	private static Workbook wb;
+	private static Sheet sh;
+	private static XSSFCell col = null;
+	private static Row row;
+	public static FileInputStream f = null;
+	public static HashMap<String, String> currentHash = new HashMap<String, String>();
+	public static List<HashMap<String, String>> mydata = new ArrayList<HashMap<String, String>>();
 	public static WebDriver dr;
 public static void initialization(){
 
@@ -54,4 +73,6 @@ public static void initialization(){
 		System.out.println("METHOD(initialization) EXECUTION ENDED SUCCESSFULLY");
 	}
 }
+
+
 }
