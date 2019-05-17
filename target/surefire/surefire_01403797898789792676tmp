@@ -1,0 +1,8 @@
+#surefire_0
+#Fri May 17 13:55:01 IST 2019
+browser=IE
+user.dir=C\:\\Users\\NTVNDM31\\Downloads\\TestNG - LoadTest-Example\\TestNG - LoadTest-Example
+TestEnvironment=www1
+localRepository=C\:\\Users\\NTVNDM31\\.m2\\repository
+TestCaseId=TC004
+basedir=C\:\\Users\\NTVNDM31\\Downloads\\TestNG - LoadTest-Example\\TestNG - LoadTest-Example

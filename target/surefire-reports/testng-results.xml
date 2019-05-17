@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="3" total="5" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="153100" started-at="2019-05-17T08:25:02Z" finished-at="2019-05-17T08:27:35Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="153100" started-at="2019-05-17T08:25:02Z" finished-at="2019-05-17T08:27:35Z">
+      <class name="com.loadtest.TestMultipleThreads">
+        <test-method status="PASS" signature="loadTestWithInValidZipCode()[pri:0, instance:com.loadtest.TestMultipleThreads@dfd3711]" name="loadTestWithInValidZipCode" duration-ms="39411" started-at="2019-05-17T13:55:02Z" finished-at="2019-05-17T13:55:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadTestWithInValidZipCode -->
+        <test-method status="FAIL" signature="loadTestWithValidZipCode()[pri:0, instance:com.loadtest.TestMultipleThreads@dfd3711]" name="loadTestWithValidZipCode" duration-ms="36546" started-at="2019-05-17T13:55:42Z" finished-at="2019-05-17T13:56:18Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Timeout waiting for Page Load Request to complete.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Timeout waiting for Page Load Request to complete.
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.loadtest.TestMultipleThreads.waitForPageLoaded(TestMultipleThreads.java:119)
+	at com.loadtest.TestMultipleThreads.loadTestWithValidZipCode(TestMultipleThreads.java:136)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:295)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:90)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadTestWithValidZipCode -->
+        <test-method status="PASS" signature="loadTestofHomePage()[pri:0, instance:com.loadtest.TestMultipleThreads@dfd3711]" name="loadTestofHomePage" duration-ms="5509" started-at="2019-05-17T13:56:18Z" finished-at="2019-05-17T13:56:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadTestofHomePage -->
+        <test-method status="FAIL" signature="loadTestofNewsPage()[pri:0, instance:com.loadtest.TestMultipleThreads@dfd3711]" name="loadTestofNewsPage" duration-ms="35925" started-at="2019-05-17T13:56:24Z" finished-at="2019-05-17T13:57:00Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Timeout waiting for Page Load Request to complete.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Timeout waiting for Page Load Request to complete.
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.loadtest.TestMultipleThreads.waitForPageLoaded(TestMultipleThreads.java:119)
+	at com.loadtest.TestMultipleThreads.loadTestofNewsPage(TestMultipleThreads.java:36)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:295)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:90)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadTestofNewsPage -->
+        <test-method status="FAIL" signature="loadTestofQuotePage()[pri:0, instance:com.loadtest.TestMultipleThreads@dfd3711]" name="loadTestofQuotePage" duration-ms="35672" started-at="2019-05-17T13:57:00Z" finished-at="2019-05-17T13:57:35Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Timeout waiting for Page Load Request to complete.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Timeout waiting for Page Load Request to complete.
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.loadtest.TestMultipleThreads.waitForPageLoaded(TestMultipleThreads.java:119)
+	at com.loadtest.TestMultipleThreads.loadTestofQuotePage(TestMultipleThreads.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:295)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:90)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadTestofQuotePage -->
+      </class> <!-- com.loadtest.TestMultipleThreads -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
