@@ -20,7 +20,7 @@ public class TestMultipleThreads extends Excel {
 	
 	@DataProvider(name = "data-provider")
 	public Object[][] dataProviderMethod() {
-		return new Object[][] { { "TC001" }, { "TC002" }, { "TC003" }, { "TC004" }, { "TC005" } };
+		return new Object[][] { { "TC005" } };
 	}
 
 	
@@ -29,7 +29,7 @@ public class TestMultipleThreads extends Excel {
 	@Test(dataProvider = "data-provider")
 	public static void loadTestofNewsPage(String data) throws FileNotFoundException, IOException {
 		int i = 0;
-		while (i < 100) {
+		while (i < 1000) {
 			try {
 				readSpecificTestData(data);
 			} catch (IOException e) {
@@ -45,13 +45,13 @@ public class TestMultipleThreads extends Excel {
 				WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
 				getQuoteButton.click();
 				pageURL = dr.getCurrentUrl();
-				waitForPageLoaded();
+				waitForPageLoaded(i);
 				dr.quit();
 				++i;
 			} else {
 				dr.navigate().to(currentHash.get("TestCaseUrl"));
 				pageURL = dr.getCurrentUrl();
-				waitForPageLoaded();
+				waitForPageLoaded(i);
 				dr.quit();
 				++i;
 			}
@@ -61,7 +61,7 @@ public class TestMultipleThreads extends Excel {
 		writeToExcelSheet(pageURL, avgLoadTime / i, i);
 	}
 
-	public static void waitForPageLoaded() {
+	public static void waitForPageLoaded(int i) {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
@@ -77,7 +77,7 @@ public class TestMultipleThreads extends Excel {
 			System.out.println(loadtime);
 			Double Loadtimems = (double) (loadtime / 1000.0);
 
-			System.out.println("Page Loadtime in Seconds:" + Loadtimems);
+			System.out.println("Page Loadtime in Seconds:" + Loadtimems + " NO of Time: " + i);
 			avgLoadTime = avgLoadTime + Loadtimems;
 		} catch (Throwable error) {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
