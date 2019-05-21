@@ -2,6 +2,10 @@ package com.loadtest;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,22 +17,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TestMultipleThreads extends Excel {
-	
+
 	public static Double LoadTime = 0.0;
 	public static String pageURL = null;
 	public static Object[][] testdata = null;
-	
+	public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	public static Date date = new Date();
+
 	@DataProvider(name = "data-provider")
 	public Object[][] dataProviderMethod() {
-		return new Object[][] { {"TC001"},{"TC002"},};
+		return new Object[][] { { "TC001" }, { "TC002" }, };
 	}
-
-	
-	
 
 	@Test(dataProvider = "data-provider")
 	public static void loadTestofNewsPage(String data) throws FileNotFoundException, IOException {
 		int i = 0;
+		int noOfExecution=0;
+		String timestamp = null;
 		while (i < 2) {
 			try {
 				readSpecificTestData(data);
@@ -46,14 +51,20 @@ public class TestMultipleThreads extends Excel {
 				getQuoteButton.click();
 				pageURL = dr.getCurrentUrl();
 				waitForPageLoaded(i);
-				writeToExcelSheet(data,pageURL, LoadTime , i);
+				timestamp = dateFormat.format(date);
+				System.out.println(timestamp);
+				noOfExecution=i;
+				writeToExcelSheet(data, pageURL, LoadTime, ++noOfExecution, timestamp);
 				dr.quit();
 				++i;
 			} else {
 				dr.navigate().to(currentHash.get("TestCaseUrl"));
 				pageURL = dr.getCurrentUrl();
 				waitForPageLoaded(i);
-				writeToExcelSheet(data,pageURL, LoadTime , i);
+				timestamp = dateFormat.format(date);
+				System.out.println(timestamp);
+				noOfExecution=i;
+				writeToExcelSheet(data, pageURL, LoadTime, ++noOfExecution , timestamp);
 				dr.quit();
 				++i;
 			}
@@ -79,7 +90,7 @@ public class TestMultipleThreads extends Excel {
 			System.out.println(loadtime);
 			Double Loadtimems = (double) (loadtime / 1000.0);
 
-			System.out.println("Page Loadtime in Seconds:" + Loadtimems + " No of Times: " + i);
+			System.out.println("Page Loadtime in Seconds:" + Loadtimems + " No of Times: " + (i + 1));
 			LoadTime = Loadtimems;
 		} catch (Throwable error) {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
