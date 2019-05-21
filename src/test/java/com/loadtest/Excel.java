@@ -46,10 +46,10 @@ public class Excel extends Baseclass {
 		}
 	}
 
-	public static boolean writeToExcelSheet(String avgLoadTime, Double url, int executionTimes)
+	public static boolean writeToExcelSheet(String Sheetname,String avgLoadTime, Double url, int executionTimes)
 			throws FileNotFoundException, IOException {
 		String fileName = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData.xlsx";
-		String sheetName = "AvgLoadTimeData";
+		String sheetName = Sheetname;
 		FileInputStream file = new FileInputStream(fileName);
 		wb = new XSSFWorkbook(file);
 		// HSSFWorkbook workbook = new HSSFWorkbook(file);

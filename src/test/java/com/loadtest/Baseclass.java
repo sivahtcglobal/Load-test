@@ -39,8 +39,7 @@ public static void initialization(){
 	 String	browserName = "chrome"; 
 	 {
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\NTVNDM31\\Downloads\\TestNG - LoadTest-Example\\TestNG - LoadTest-Example\\src\\test\\java\\resources\\Drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "\\src\\test\\java\\resources\\Drivers\\chromedriver.exe");
 
 			DesiredCapabilities caps = DesiredCapabilities.chrome();
 			ChromeOptions options = new ChromeOptions();
