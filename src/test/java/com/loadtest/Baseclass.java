@@ -44,7 +44,7 @@ public static void initialization(){
 			DesiredCapabilities caps = DesiredCapabilities.chrome();
 			ChromeOptions options = new ChromeOptions();
 			caps.setCapability(ChromeOptions.CAPABILITY, options);
-
+			options.addArguments("--headless");
 			dr = new ChromeDriver(options);
 		} else if (browserName.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\Drivers\\geckodriver.exe");

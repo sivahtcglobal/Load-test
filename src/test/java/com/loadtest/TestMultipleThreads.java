@@ -23,18 +23,19 @@ public class TestMultipleThreads extends Excel {
 	public static Object[][] testdata = null;
 	public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	public static Date date = new Date();
+	
 
 	@DataProvider(name = "data-provider")
 	public Object[][] dataProviderMethod() {
-		return new Object[][] { { "TC001" }, { "TC002" }, };
+		return new Object[][] { { "TC005" } };
 	}
 
 	@Test(dataProvider = "data-provider")
 	public static void loadTestofNewsPage(String data) throws FileNotFoundException, IOException {
 		int i = 0;
-		int noOfExecution=0;
+		int noOfExecution = 0;
 		String timestamp = null;
-		while (i < 2) {
+		while (i < 5) {
 			try {
 				readSpecificTestData(data);
 			} catch (IOException e) {
@@ -42,18 +43,19 @@ public class TestMultipleThreads extends Excel {
 			}
 			initialization();
 			dr.manage().window().maximize();
-			dr.manage().deleteAllCookies();
+			//dr.manage().deleteAllCookies();
 			if (currentHash.get("TestCaseId").equals("TC004") || currentHash.get("TestCaseId").equals("TC005")) {
 				dr.navigate().to(currentHash.get("TestCaseUrl"));
 				WebElement nonMonetizedZipCode = dr.findElement(By.xpath("//*[@id='free-quote-zip']"));
 				nonMonetizedZipCode.sendKeys(currentHash.get("ZipCode"));
+				waitForPageLoaded();
 				WebElement getQuoteButton = dr.findElement(By.xpath("//*[@id='free-quote']/button"));
 				getQuoteButton.click();
 				pageURL = dr.getCurrentUrl();
 				waitForPageLoaded(i);
 				timestamp = dateFormat.format(date);
 				System.out.println(timestamp);
-				noOfExecution=i;
+				noOfExecution = i;
 				writeToExcelSheet(data, pageURL, LoadTime, ++noOfExecution, timestamp);
 				dr.quit();
 				++i;
@@ -63,8 +65,8 @@ public class TestMultipleThreads extends Excel {
 				waitForPageLoaded(i);
 				timestamp = dateFormat.format(date);
 				System.out.println(timestamp);
-				noOfExecution=i;
-				writeToExcelSheet(data, pageURL, LoadTime, ++noOfExecution , timestamp);
+				noOfExecution = i;
+				writeToExcelSheet(data, pageURL, LoadTime, ++noOfExecution, timestamp);
 				dr.quit();
 				++i;
 			}
@@ -83,7 +85,7 @@ public class TestMultipleThreads extends Excel {
 		};
 		try {
 			// Thread.sleep(1000);
-			WebDriverWait wait = new WebDriverWait(dr, 30);
+			 WebDriverWait wait = new WebDriverWait(dr, 30);
 			wait.until(expectation);
 			Long loadtime = (Long) ((JavascriptExecutor) dr)
 					.executeScript("return performance.timing.loadEventEnd - performance.timing.navigationStart;");
@@ -96,5 +98,19 @@ public class TestMultipleThreads extends Excel {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
 		}
 	}
-
+	public static void waitForPageLoaded() {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+						.equals("complete");
+			}
+		};
+		try {
+			 WebDriverWait wait = new WebDriverWait(dr, 30);
+			wait.until(expectation);
+			
+		} catch (Throwable error) {
+			Assert.fail("Timeout waiting for Page Load Request to complete.");
+		}
+	}
 }
